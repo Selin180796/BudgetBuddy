@@ -1,2 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" />
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)xamarin.androidx.multidex/2.0.1.5/buildTransitive/monoandroid90/Xamarin.AndroidX.MultiDex.targets" Condition="Exists('$(NuGetPackageRoot)xamarin.androidx.multidex/2.0.1.5/buildTransitive/monoandroid90/Xamarin.AndroidX.MultiDex.targets')" />
+    <Import Project="$(NuGetPackageRoot)xamarin.androidx.migration/1.0.8/buildTransitive/monoandroid90/Xamarin.AndroidX.Migration.targets" Condition="Exists('$(NuGetPackageRoot)xamarin.androidx.migration/1.0.8/buildTransitive/monoandroid90/Xamarin.AndroidX.Migration.targets')" />
+  </ImportGroup>
+</Project>

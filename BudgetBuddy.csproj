@@ -1,9 +1,48 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <!-- Target framework for Android -->
+    <TargetFramework>net8.0-android</TargetFramework>
+    <!-- Version of Android SDK -->
+    <TargetFrameworkVersion>21.0</TargetFrameworkVersion>
+    <!-- Set the output type -->
+    <OutputType>Exe</OutputType>
+    <!-- Enable nullable reference types -->
     <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Define any NuGet package references here -->
+    <PackageReference Include="Xamarin.AndroidX.Migration" Version="1.0.8" />
+    <!-- Add additional packages as needed -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Add any project references here -->
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Include any additional files or directories here -->
+    <None Update="AndroidManifest.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>$(ProjectDir)bin\Debug\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>$(ProjectDir)bin\Release\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+
+  <!-- Define any Android-specific settings here -->
+  <PropertyGroup>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidEnableProfiledAOT>false</AndroidEnableProfiledAOT>
   </PropertyGroup>
 
 </Project>
+
