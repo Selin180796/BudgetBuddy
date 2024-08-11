@@ -1,48 +1,45 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <!-- Target framework for Android -->
     <TargetFramework>net8.0-android</TargetFramework>
-    <!-- Version of Android SDK -->
-    <TargetFrameworkVersion>21.0</TargetFrameworkVersion>
-    <!-- Set the output type -->
     <OutputType>Exe</OutputType>
-    <!-- Enable nullable reference types -->
     <Nullable>enable</Nullable>
+    <ApplicationIcon>Resources/drawable/icon.png</ApplicationIcon>
+    <ApplicationLabel>BudgetBuddy</ApplicationLabel>
+    <AndroidUseAapt2>true</AndroidUseAapt2>
+    <UseMaui>false</UseMaui>
+    <AndroidEnableJetifier>true</AndroidEnableJetifier>
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- Define any NuGet package references here -->
-    <PackageReference Include="Xamarin.AndroidX.Migration" Version="1.0.8" />
-    <!-- Add additional packages as needed -->
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2662" />
+    <PackageReference Include="Xamarin.AndroidX.Activity" Version="1.9.1" />
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.6.1.10" />
+    <PackageReference Include="Xamarin.AndroidX.Legacy.Support.V4" Version="1.0.0.27" />
+    <PackageReference Include="Xamarin.AndroidX.Print" Version="1.0.0.27" />
+    <PackageReference Include="Xamarin.Google.Android.Material" Version="1.8.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Common" Version="2.8.4" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Process" Version="2.8.4" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Runtime" Version="2.8.4" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.8.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Add any project references here -->
-  </ItemGroup>
-
-  <ItemGroup>
-    <!-- Include any additional files or directories here -->
-    <None Update="AndroidManifest.xml">
+    <Content Update="Properties\launchSettings.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>$(ProjectDir)bin\Debug\$(AssemblyName).xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>$(ProjectDir)bin\Release\$(AssemblyName).xml</DocumentationFile>
-  </PropertyGroup>
-
-  <!-- Define any Android-specific settings here -->
-  <PropertyGroup>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AndroidEnableProfiledAOT>false</AndroidEnableProfiledAOT>
-  </PropertyGroup>
-
+  <ItemGroup>
+    <None Remove="Resources\layout\values\" />
+    <None Remove="Resources\drawable\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\layout\values\" />
+    <Folder Include="Resources\drawable\" />
+  </ItemGroup>
 </Project>
 

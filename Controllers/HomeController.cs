@@ -1,31 +1,48 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Xamarin.Forms;
 using BudgetBuddy.Models;
+using Microsoft.Extensions.Logging;
+using BudgetBuddy;
+using BudgetBuddy.Views;
 
-namespace BudgetBuddy.Controllers;
 
-public class HomeController : Controller
+namespace BudgetBuddy
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    public class HomePage : ContentPage
     {
-        _logger = logger;
-    }
+        private readonly ILogger<HomePage> _logger;
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+        public HomePage(ILogger<HomePage> logger)
+        {
+            _logger = logger;
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+            var indexButton = new Button { Text = "Index" };
+            var privacyButton = new Button { Text = "Privacy" };
+            var errorButton = new Button { Text = "Error" };
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            indexButton.Clicked += OnIndexButtonClicked;
+            privacyButton.Clicked += OnPrivacyButtonClicked;
+            errorButton.Clicked += OnErrorButtonClicked;
+
+            Content = new StackLayout
+            {
+                Children = { indexButton, privacyButton, errorButton }
+            };
+        }
+
+        private async void OnIndexButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new IndexPage());
+        }
+
+        private async void OnPrivacyButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new PrivacyPage());
+        }
+
+        private void OnErrorButtonClicked(object sender, EventArgs e)
+        {
+            _logger.LogError("Error button clicked.");
+        }
     }
 }

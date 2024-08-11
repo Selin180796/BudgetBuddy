@@ -1,18 +1,17 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using BudgetBuddy.Models;
 
 namespace BudgetBuddy.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Expense> Expenses { get; set; }
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        public MainViewModel()
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
-            Expenses = new ObservableCollection<Expense>();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
